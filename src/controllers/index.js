@@ -1,4 +1,4 @@
-const login = require('./loginController');
+const login = require('./login');
 
 module.exports = {
   login,
