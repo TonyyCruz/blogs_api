@@ -9,7 +9,6 @@ const jwtConfig = {
 
 module.exports = {
   tokenGenerate: (userData) => {
-    console.log(userData);
     const token = jwt.sign(userData, secret, jwtConfig);
     return token;
   },
