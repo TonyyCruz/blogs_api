@@ -21,7 +21,7 @@ const userJoiValidation = Joi.object({
       'string.empty': STRING_EMPTY,
       'string.min': STRING_MIN,
       'string.max': STRING_MAX,
-      'string.email': '"email" must be a valid email',
+      'string.email': '"email" must be a valid email | 400',
     }),
   password: Joi.string().min(6).max(60).required()
   .messages({
@@ -38,21 +38,17 @@ const dataTypeValidation = ({ displayName, email, password }) => {
   const result = userJoiValidation.validate({ displayName, email, password });
   if (!result.error) return {};
   const { message: error } = result.error.details[0];
-  const [message, status] = error.split('|');
+  const [message, status] = error.split(' |');
   return { message, status };
 };
 
-const emailAlreadyExists = async (email) => {
-  const emailVerify = await User.findOne({ where: { email } });
-  if (emailVerify.dataValues) return true;
-  return false;
-};
+const emailAlreadyExists = (email) => User.findOne({ where: { email } });
 
 module.exports = {
-  createUserValidation: ({ displayName, email, password }) => {
+  createUserValidation: async ({ displayName, email, password }) => {
     const validateData = dataTypeValidation({ displayName, email, password });
     if (validateData.message) return validateData;
-    if (emailAlreadyExists(email)) {
+    if (await emailAlreadyExists(email)) {
       return { message: 'User already registered', status: 409 };
     }
     return {};
