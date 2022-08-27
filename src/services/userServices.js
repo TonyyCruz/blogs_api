@@ -14,7 +14,6 @@ module.exports = {
     const data = await User.findAll({
       attributes: { exclude: ['password'] } });
     if (!data) return { status: 400, message: 'Unexpected error' };
-    console.log(data);
     return { status: 200, data };
   },
 };

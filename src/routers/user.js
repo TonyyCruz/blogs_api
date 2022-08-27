@@ -8,6 +8,8 @@ routerUser.post('/',
   validationMiddleware.userCreate,
   controller.user.create);
 
-routerUser.get('/', controller.user.findAll);
+routerUser.get('/',
+validationMiddleware.token,
+controller.user.findAll);
 
 module.exports = routerUser;
