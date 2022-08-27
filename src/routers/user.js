@@ -12,4 +12,8 @@ routerUser.get('/',
 validationMiddleware.token,
 controller.user.findAll);
 
+routerUser.get('/:id',
+validationMiddleware.token,
+controller.user.findByPk);
+
 module.exports = routerUser;

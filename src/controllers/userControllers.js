@@ -18,4 +18,14 @@ module.exports = {
       next(err);
     }
   },
+
+  findByPk: async (req, res, next) => {
+    const { id } = req.params;
+    try {
+      const { status, data, message } = await service.user.findByPk({ id });
+      res.status(status).json(data || { message });
+    } catch (err) {
+      next(err);
+    }
+  },
 };

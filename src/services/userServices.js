@@ -16,4 +16,11 @@ module.exports = {
     if (!data) return { status: 400, message: 'Unexpected error' };
     return { status: 200, data };
   },
+
+  findByPk: async ({ id }) => {
+    const data = await User.findByPk(id,
+      { attributes: { exclude: ['password'] } });
+    if (!data) return { status: 404, message: 'User does not exist' };
+    return { status: 200, data: data.dataValues };
+  },
 };
