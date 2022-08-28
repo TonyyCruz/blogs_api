@@ -18,7 +18,15 @@ module.exports = (sequelize, DataTypes) => {
 });
 
   blogPost.associate = (models) => {
-    blogPost.belongsTo(models.User, { as: 'user', foreignKey: 'userId' })
+
+    blogPost.belongsTo(models.User, { as: 'user', foreignKey: 'userId' });
+
+    blogPost.hasOne(models.PostCategory,
+      { 
+        as: 'postCategory',
+        onDelete: 'RESTRICT',
+        onUpdate: 'RESTRICT'
+      } );
   };
 
   return blogPost;
