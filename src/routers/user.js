@@ -8,12 +8,13 @@ routerUser.post('/',
   validationMiddleware.userCreate,
   controller.user.create);
 
+  //  ====  TOKEN VALIDATION ==== //
+routerUser.use(validationMiddleware.token);
+
 routerUser.get('/',
-validationMiddleware.token,
 controller.user.findAll);
 
 routerUser.get('/:id',
-validationMiddleware.token,
 controller.user.findByPk);
 
 module.exports = routerUser;

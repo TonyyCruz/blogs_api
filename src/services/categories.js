@@ -10,4 +10,12 @@ module.exports = {
 
     return { status: 201, data: newCategory.dataValues };
   },
+
+  findAll: async () => {
+    const categories = await Category.findAll();
+
+    if (!categories) return { status: 500, message: 'Unexpected error' };
+    console.log('=====000', categories);
+    return { status: 200, data: categories };
+  },
 };

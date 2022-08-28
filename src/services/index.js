@@ -1,6 +1,6 @@
 const login = require('./login');
-const user = require('./userServices');
-const categories = require('./categoriesServices');
+const user = require('./user');
+const categories = require('./categories');
 
 module.exports = {
   login,

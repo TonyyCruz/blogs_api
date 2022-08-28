@@ -1,6 +1,6 @@
 const login = require('./login');
-const user = require('./userControllers');
-const categories = require('./categoriesControllers');
+const user = require('./user');
+const categories = require('./categories');
 
 module.exports = {
   login,
