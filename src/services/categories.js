@@ -6,7 +6,7 @@ module.exports = {
 
     const newCategory = await Category.create({ name });
 
-    if (!newCategory) return { status: 500, message: 'Unexpected error' };
+    if (!newCategory) return { status: 401, message: 'Unexpected error' };
 
     return { status: 201, data: newCategory.dataValues };
   },
@@ -14,8 +14,7 @@ module.exports = {
   findAll: async () => {
     const categories = await Category.findAll();
 
-    if (!categories) return { status: 500, message: 'Unexpected error' };
-    console.log('=====000', categories);
+    if (!categories) return { status: 401, message: 'Unexpected error' };
     return { status: 200, data: categories };
   },
 };

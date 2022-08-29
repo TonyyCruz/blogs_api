@@ -20,8 +20,6 @@ module.exports = {
       } = await service.categories.findAll();
 
       res.status(status).json(data || { message });
-
-      next();
     } catch (err) {
       next(err);
     }

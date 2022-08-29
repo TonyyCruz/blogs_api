@@ -7,7 +7,7 @@ module.exports = async ({ email, password }) => {
   }
 
   const user = await User.findOne({
-    attributes: ['displayName', 'email', 'password'],
+    attributes: ['id', 'displayName', 'email', 'password'],
     where: { email, password },
   });
 

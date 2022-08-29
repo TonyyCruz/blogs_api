@@ -11,11 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     category.associate = (models) => {
-      category.hasMany(models.PostCategory,
-        {
-          onDelete: 'RESTRICT',
-          onUpdate: 'RESTRICT'
-        })
+      category.hasMany(models.PostCategory)
     }
 
   return category;

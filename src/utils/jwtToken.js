@@ -12,12 +12,4 @@ module.exports = {
     const token = jwt.sign(userData, SECRET, jwtConfig);
     return token;
   },
-
-  tokenValidate: (token) => {
-    if (!token) return { status: 401, message: 'Token not found' };
-    const decode = jwt.verify(token, SECRET, (err) => {
-      if (err) return { status: 401, message: 'Expired or invalid token' };
-    });
-    return decode;
-  },
 };
