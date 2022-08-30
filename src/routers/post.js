@@ -14,4 +14,7 @@ controller.blogPost.create);
 routerPost.get('/',
 controller.blogPost.findAll);
 
+routerPost.get('/:id',
+controller.blogPost.findByPk);
+
 module.exports = routerPost;

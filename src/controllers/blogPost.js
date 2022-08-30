@@ -13,10 +13,21 @@ module.exports = {
     }
   },
 
-  findAll: async (req, res, next) => {
+  findAll: async (_req, res, next) => {
     try {
       const { status, data, message,
       } = await service.blogPost.findAll();
+
+      res.status(status).json(data || { message });
+    } catch (err) {
+      next(err);
+    }
+  },
+
+  findByPk: async (req, res, next) => {
+    try {
+      const { status, data, message,
+      } = await service.blogPost.findByPk(req.params);
 
       res.status(status).json(data || { message });
     } catch (err) {

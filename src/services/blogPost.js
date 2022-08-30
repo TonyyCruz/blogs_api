@@ -19,8 +19,7 @@ module.exports = {
         model: User,
         as: 'user', 
         attributes: { exclude: ['password'] },
-      },
-      {
+      }, {
         model: Category,
         as: 'categories',
         through: {
@@ -30,5 +29,25 @@ module.exports = {
     });
 
     return { status: 200, data: dataValues };
+  },
+
+  findByPk: async ({ id }) => {
+    const postData = await BlogPost.findByPk(id, {
+      include: [{
+        model: User,
+        as: 'user',
+        attributes: { exclude: ['password'] },
+      }, {
+        model: Category,
+        as: 'categories',
+        through: {
+          attributes: [],
+        },
+      }],
+    });
+
+    if (!postData) return { status: 404, message: 'Post does not exist' };
+
+    return { status: 200, data: postData.dataValues };
   },
 };
