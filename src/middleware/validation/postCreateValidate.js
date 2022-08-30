@@ -41,7 +41,7 @@ const postJoiValidate = Joi.object({
   'any.required': 'Some required fields are missing | 400',
 });
 
-const blogPostValidation = ({ title, content, categoryIds }) => {
+const postJoiValidation = ({ title, content, categoryIds }) => {
   const result = postJoiValidate.validate({ title, content, categoryIds });
   if (!result.error) return {};
 
@@ -60,7 +60,7 @@ const categoryIdVerify = async (categoryIds) => {
 };
 
 module.exports = async ({ title, content, categoryIds }) => {
-  const validateData = blogPostValidation({ title, content, categoryIds });
+  const validateData = postJoiValidation({ title, content, categoryIds });
   if (validateData.message) return validateData;
 
   if (await categoryIdVerify(categoryIds)) return {};

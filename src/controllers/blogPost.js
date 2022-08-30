@@ -34,4 +34,15 @@ module.exports = {
       next(err);
     }
   },
+
+  update: async (req, res, next) => {
+    try {
+      const { status, data, message,
+      } = await service.blogPost.update({ id: req.params, ...req.body });
+
+      res.status(status).json(data || { message });
+    } catch (err) {
+      next(err);
+    }
+  },
 };

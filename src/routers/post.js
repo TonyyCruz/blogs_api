@@ -8,7 +8,7 @@ const routerPost = express.Router();
 routerPost.use(validationMiddleware.token);
 
 routerPost.post('/',
-validationMiddleware.blogPost,
+validationMiddleware.blogPostCreate,
 controller.blogPost.create);
 
 routerPost.get('/',
@@ -16,5 +16,9 @@ controller.blogPost.findAll);
 
 routerPost.get('/:id',
 controller.blogPost.findByPk);
+
+routerPost.put('/:id',
+validationMiddleware.blogPostUpdate,
+controller.blogPost.update);
 
 module.exports = routerPost;

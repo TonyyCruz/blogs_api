@@ -1,6 +1,7 @@
 const user = require('./userValidate');
 const tokenValidate = require('./tokenValidate');
-const blogPostValidate = require('./blogPostValidate');
+const postCreateValidate = require('./postCreateValidate');
+const postUpdateValidate = require('./postUpdateValidate');
 
 module.exports = {
   userCreate: async (req, res, next) => {
@@ -33,9 +34,25 @@ module.exports = {
     }
   },
 
-  blogPost: async (req, res, next) => {
+  blogPostCreate: async (req, res, next) => {
     try {
-      const validate = await blogPostValidate(req.body);
+      const validate = await postCreateValidate(req.body);
+      if (validate.message) {
+        return res.status(validate.status).json({ message: validate.message });
+      }
+      next();
+    } catch (err) {
+      next(err);
+    }
+  },
+
+  blogPostUpdate: async (req, res, next) => {
+    const userId = req.user.id;
+    const postPk = req.params.id;
+    try {
+      const validate = await postUpdateValidate({
+        postPk, userId, ...req.body });
+
       if (validate.message) {
         return res.status(validate.status).json({ message: validate.message });
       }

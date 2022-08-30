@@ -14,7 +14,7 @@ module.exports = {
   },
 
   findAll: async () => {
-    const dataValues = await BlogPost.findAll({
+    const blogsData = await BlogPost.findAll({
       include: [{
         model: User,
         as: 'user', 
@@ -22,13 +22,11 @@ module.exports = {
       }, {
         model: Category,
         as: 'categories',
-        through: {
-          attributes: [],
-        },
+        through: { attributes: [] },
       }],
     });
 
-    return { status: 200, data: dataValues };
+    return { status: 200, data: blogsData };
   },
 
   findByPk: async ({ id }) => {
@@ -40,14 +38,31 @@ module.exports = {
       }, {
         model: Category,
         as: 'categories',
-        through: {
-          attributes: [],
-        },
+        through: { attributes: [] },
       }],
     });
 
     if (!postData) return { status: 404, message: 'Post does not exist' };
 
     return { status: 200, data: postData.dataValues };
+  },
+
+  update: async ({ id, title, content }) => {
+    await BlogPost.update({
+      title, content }, { where: id });
+
+    const updateData = await BlogPost.findOne({
+      include: [{
+        model: User,
+        as: 'user',
+        attributes: { exclude: ['password'] },
+      }, { 
+        model: Category,
+        as: 'categories',
+        through: { attributes: [] } },
+    ],
+    });
+
+    return { status: 200, data: updateData };
   },
 };
