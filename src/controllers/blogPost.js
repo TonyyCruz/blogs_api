@@ -12,4 +12,15 @@ module.exports = {
       next(err);
     }
   },
+
+  findAll: async (req, res, next) => {
+    try {
+      const { status, data, message,
+      } = await service.blogPost.findAll();
+
+      res.status(status).json(data || { message });
+    } catch (err) {
+      next(err);
+    }
+  },
 };

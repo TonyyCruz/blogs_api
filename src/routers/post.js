@@ -11,4 +11,7 @@ routerPost.post('/',
 validationMiddleware.blogPost,
 controller.blogPost.create);
 
+routerPost.get('/',
+controller.blogPost.findAll);
+
 module.exports = routerPost;
