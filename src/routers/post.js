@@ -7,6 +7,8 @@ const routerPost = express.Router();
 //  ====  TOKEN VALIDATION ==== //
 routerPost.use(validationMiddleware.token);
 
-routerPost.post('/', controller.blogPost.create);
+routerPost.post('/',
+validationMiddleware.blogPost,
+controller.blogPost.create);
 
 module.exports = routerPost;
