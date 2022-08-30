@@ -31,16 +31,14 @@ const postJoiValidation = ({ title, content }) => {
   return { message, status };
 };
 
-const userIdVerify = async ({ userId, postPk }) => (
-  BlogPost.findAll({ where: { userId, id: postPk } })
+const userPostValidate = async ({ userId, postPk }) => (
+  BlogPost.findOne({ where: { userId, id: postPk } })
 );
 
 module.exports = async ({ userId, title, content, postPk }) => {
   const validateData = postJoiValidation({ title, content });
   if (validateData.message) return validateData;
 
-  const postData = await userIdVerify({ userId, postPk });
-
-  if (postData.length) return {};
+  if (await userPostValidate({ userId, postPk })) return {};
   return { status: 401, message: 'Unauthorized user' };
 };

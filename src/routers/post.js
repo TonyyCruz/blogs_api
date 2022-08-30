@@ -21,4 +21,8 @@ routerPost.put('/:id',
 validationMiddleware.blogPostUpdate,
 controller.blogPost.update);
 
+routerPost.delete('/:id',
+validationMiddleware.blogPostDelete,
+controller.blogPost.delete);
+
 module.exports = routerPost;

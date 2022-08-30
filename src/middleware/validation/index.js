@@ -2,6 +2,7 @@ const user = require('./userValidate');
 const tokenValidate = require('./tokenValidate');
 const postCreateValidate = require('./postCreateValidate');
 const postUpdateValidate = require('./postUpdateValidate');
+const postDeleteValidate = require('./postDeleteValidate');
 
 module.exports = {
   userCreate: async (req, res, next) => {
@@ -52,6 +53,21 @@ module.exports = {
     try {
       const validate = await postUpdateValidate({
         postPk, userId, ...req.body });
+
+      if (validate.message) {
+        return res.status(validate.status).json({ message: validate.message });
+      }
+      next();
+    } catch (err) {
+      next(err);
+    }
+  },
+
+  blogPostDelete: async (req, res, next) => {
+    const userId = req.user.id;
+    const postPk = req.params.id;
+    try {
+      const validate = await postDeleteValidate({ postPk, userId });
 
       if (validate.message) {
         return res.status(validate.status).json({ message: validate.message });

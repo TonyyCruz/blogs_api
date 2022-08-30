@@ -65,4 +65,12 @@ module.exports = {
 
     return { status: 200, data: updateData };
   },
+
+  delete: async ({ id }) => {
+    const deleteData = await BlogPost.destroy({ where: { id } });
+
+    if (!deleteData) return { status: 504, data: 'Delete Fail' };
+
+    return { status: 204, data: '' };
+  },
 };

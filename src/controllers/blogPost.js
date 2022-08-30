@@ -45,4 +45,15 @@ module.exports = {
       next(err);
     }
   },
+
+  delete: async (req, res, next) => {
+    try {
+      const { status, data, message,
+      } = await service.blogPost.delete(req.params);
+
+      res.status(status).json(data || { message });
+    } catch (err) {
+      next(err);
+    }
+  },
 };
