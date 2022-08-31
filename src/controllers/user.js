@@ -28,4 +28,15 @@ module.exports = {
       next(err);
     }
   },
+
+  delete: async (req, res, next) => {
+    const { id } = req.user;
+
+    try {
+      const { status, token, message } = await service.user.delete({ id });
+      res.status(status).json(token || { message });
+    } catch (err) {
+      next(err);
+    }
+  },
 };

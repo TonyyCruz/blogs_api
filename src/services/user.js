@@ -30,4 +30,10 @@ module.exports = {
     if (!data) return { status: 404, message: 'User does not exist' };
     return { status: 200, data: data.dataValues };
   },
+
+  delete: async ({ id }) => {
+    const data = await User.destroy({ where: { id } });
+    if (!data) return { status: 404, message: 'Delete fail' };
+    return { status: 204, data: '' };
+  },
 };

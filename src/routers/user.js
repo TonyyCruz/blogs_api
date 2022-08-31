@@ -17,4 +17,7 @@ controller.user.findAll);
 routerUser.get('/:id',
 controller.user.findByPk);
 
+routerUser.delete('/me',
+controller.user.delete);
+
 module.exports = routerUser;
