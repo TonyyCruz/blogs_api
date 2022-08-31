@@ -56,4 +56,15 @@ module.exports = {
       next(err);
     }
   },
+
+  search: async (req, res, next) => {
+    try {
+      const { status, data, message,
+      } = await service.blogPost.search(req.query);
+
+      res.status(status).json(data || { message });
+    } catch (err) {
+      next(err);
+    }
+  },
 };

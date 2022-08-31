@@ -14,6 +14,9 @@ controller.blogPost.create);
 routerPost.get('/',
 controller.blogPost.findAll);
 
+routerPost.get('/search',
+controller.blogPost.search);
+
 routerPost.get('/:id',
 controller.blogPost.findByPk);
 
