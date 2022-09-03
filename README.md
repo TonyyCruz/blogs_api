@@ -154,15 +154,15 @@
 _Pré-requisitos_
 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
-[Git](https://git-scm.com)
-[Node.js](https://nodejs.org/en/)
+- [Git](https://git-scm.com)
+- [Node.js](https://nodejs.org/en/)
   
 Alem de [Mysql](https://www.mysql.com/) para rodar local ou [Docker](https://docs.docker.com/get-docker/) para rodar em container.
 
 
 É recomendado utilizar algum cliente HTTP, como [Postman](https://www.postman.com/) ou o [Insomnia](https://insomnia.rest/download).
 
-Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)
+Também é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)
 
 ---
 
