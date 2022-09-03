@@ -4,7 +4,7 @@ module.exports = {
       [
         {
           id: 1,
-          name: 'Inovação',
+          name: 'Objetivo',
         },
         {
           id: 2,
