@@ -6,7 +6,7 @@
 
 <br>
 
-<h3 align="center">Diagrama ORM (Object-Relational Mapping)</h3>
+<h3 align="center">Diagrama DRM (Diagrama de Entidade-Relacionamento)</h3>
 
 <img src="diagramaDB.png">
 
