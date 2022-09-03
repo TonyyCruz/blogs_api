@@ -3,6 +3,15 @@
 
 ---
 
+
+<br>
+
+<h3 align="center">Diagrama ORM (Object-Relational Mapping)</h3>
+
+<img src="diagramaDB.png">
+
+---
+
 <br>
 
 <h2 align="center">📃 Sobre o Projeto</h2>
